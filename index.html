@@ -3,86 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akasha Chat Widget</title>
+    <title>Akasha Chat</title>
+    
+    <!-- In your <head> tag -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
     <style>
         body { 
             margin: 0; 
             padding: 0;
-            overflow: hidden;
-        }
-        
-        /* Container fills the iframe */
-        #webchat { 
-            width: 100vw; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            position: relative;
         }
         
-        /* Force chat to fill container, hide bubble */
         #webchat .bpWebchat {
-            position: absolute !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            max-width: 100% !important;
-            max-height: 100% !important;
+            position: unset;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
         }
-        
-        /* Hide the floating button completely */
-        .bpFab,
-        [class*="Fab"] {
-            display: none !important;
-        }
-        
-        /* Hide minimize button */
-        .bpw-header-icon-close {
-            display: none !important;
+        #webchat .bpFab {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="webchat"></div>
+    <!-- Put this on your page BEFORE the script below -->
+    <div id="webchat" style="width: 100vw; height: 100vh;"></div>
     
-    <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+    <!-- In your <body> tag -->
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                if (window.botpress) {
-                    // Initialize with selector
-                    window.botpress.init({
-                        botId: "fe624169-58eb-4382-92bf-b8989c6d32e2",
-                        clientId: "9f902f1f-d65a-4ac1-b1de-09e8e4e2db52",
-                        selector: "#webchat",  // This should embed it
-                        configuration: {
-                            version: "v1",
-                            botName: "Akasha",
-                            botAvatar: "https://files.bpcontent.cloud/2025/08/23/21/20250823212622-RONFWUO8.png",
-                            composerPlaceholder: "Generate a CR10 boss for Pathfinder 2E...",
-                            color: "#4a5fc1",
-                            themeMode: "dark",
-                            variant: "solid",
-                            headerVariant: "glass",
-                            fontFamily: "inter",
-                            radius: 4,
-                            feedbackEnabled: false,
-                            footer: "Contact at akashattrpg@gmail.com",
-                            email: {
-                                title: "akashattrpg@gmail.com",
-                                link: "mailto:akashattrpg@gmail.com"
-                            }
-                        }
-                    });
-                    
-                    // Force open immediately
-                    window.botpress.open();
-                    
-                    // Keep trying to open it
-                    window.botpress.on("webchat:ready", () => {
-                        window.botpress.open();
-                    });
-                }
-            }, 2000);
+        window.botpress.on("webchat:ready", () => {
+            window.botpress.open();
+        });
+        
+        window.botpress.init({
+            "botId": "fe624169-58eb-4382-92bf-b8989c6d32e2",
+            "configuration": {
+                "version": "v1",
+                "composerPlaceholder": "Generate a CR10 boss for Pathfinder 2E, that is water themed with inspiration from other systems.",
+                "botName": "Akasha",
+                "botAvatar": "https://files.bpcontent.cloud/2025/08/23/21/20250823212622-RONFWUO8.png",
+                "website": {},
+                "email": {
+                    "title": "akashattrpg@gmail.com",
+                    "link": "akashattrpg@gmail.com"
+                },
+                "phone": {},
+                "termsOfService": {},
+                "privacyPolicy": {},
+                "color": "#4a5fc1",
+                "variant": "solid",
+                "headerVariant": "glass",
+                "themeMode": "dark",
+                "fontFamily": "inter",
+                "radius": 4,
+                "feedbackEnabled": false,
+                "footer": "Contact at akashattrpg@gmail.com",
+                "additionalStylesheetUrl": "https://files.bpcontent.cloud/2025/08/23/20/20250823200123-IQKCA3SC.css",
+                "allowFileUpload": true
+            },
+            "clientId": "9f902f1f-d65a-4ac1-b1de-09e8e4e2db52",
+            "selector": "#webchat"
         });
     </script>
 </body>
